@@ -1,0 +1,4 @@
+.navlinks a.active{
+   color: #E77570;
+   border-bottom: 2px solid #E77570;
+}

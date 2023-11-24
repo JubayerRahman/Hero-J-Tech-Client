@@ -1,6 +1,7 @@
 import { useContext } from "react"
-import Navbar from "./Components/Navbar/Navbar"
+import MainNavbar from "./Components/Navbar/Navbar"
 import { AuthContent } from "./Components/Authprovider/AuthProvider"
+import { Outlet } from "react-router-dom";
 
 function App() {
 
@@ -9,7 +10,8 @@ function App() {
 
   return (
     <>
-      <Navbar/>
+      <MainNavbar/>
+      <Outlet/>
     </>
   )
 }
