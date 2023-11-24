@@ -1,18 +1,22 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Button, Checkbox, Label, Select, TextInput } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import ProfileIcon from "../../assets/profileDefault.png"
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContent } from '../../Components/Authprovider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import auth from '../../Components/Firebase/Firebase.confing';
+import useAxios from '../../Components/Hook/AxiosUrl/useAxios';
 
 const Register = () => {
     const {CreateUser} = useContext(AuthContent)
     const [Img, setImage] = useState(ProfileIcon)
+    const axousLink = useAxios()
     const ImageURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_API}`
     const uploadRef = useRef(null)
+    const navigate = useNavigate()
+
     const fileUploadButton = event =>{
         uploadRef.current.click()
     }
@@ -81,7 +85,28 @@ const Register = () => {
                 photoURL:`${imageURL}`
               })
               .then(res=>{
-                
+                let varification = "" 
+                if (role == "HR") {
+                  varification = true
+                }
+                else{
+                  varification = false
+                }
+                const employeeData = {imageURL, name, email, designation, role, account, salary, varification}
+                axousLink.post('/employee', employeeData)
+                .then(res => 
+                  {
+                    if (res.data?.insertedId) {
+                      Swal.fire({
+                        title:"Your Registration is completed, wait for HR to verify your Account. Thank you",
+                        icon:"success"
+                      })
+                      navigate("/")
+                      setTimeout(()=>{
+                        window.location.reload()
+                      }, 3000)
+                    }
+                  })
               })
               .then(error=> console.log(error.message))
             })
@@ -98,6 +123,7 @@ const Register = () => {
   return (
     <div className=' container mx-auto my-[50px] flex flex-col items-center'>
       <form onSubmit={registrationForm} className="flex w-[85%] md:w-[60%] flex-col gap-4">
+      <h1 className='text-5xl my-[25px] text-center'>Register with us</h1>
         <img 
         className='w-[150px] h-[150px] border-2 rounded-lg hover:opacity-[0.2]' 
         src={Img} 

@@ -1,11 +1,14 @@
 import React, { useContext } from 'react'
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContent } from '../../Components/Authprovider/AuthProvider';
 
 const Login = () => {
   const {login} = useContext(AuthContent)
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log(location)
     const formFunction = e =>{
         e.preventDefault()
         const email = e.target.email.value
@@ -19,15 +22,27 @@ const Login = () => {
 
         login(email, password)
         .then(res=>{
+          if (location?.state) {
+            navigate(location.state)
+          }
+          else{
+            navigate("/")
+          }
           return Swal.fire({
             title:"Logged in successfully",
             icon:"success"
           })
         })
+        .catch(error => {
+          Swal.fire({
+            title:error.message,
+            icon:"error"
+          })
+        })
     }
   return (
     <div className='container mx-auto flex flex-col items-center'>
-      <h1>Login with us</h1>
+      <h1 className='text-5xl my-[25px]'>Login with us</h1>
       <form onSubmit={formFunction} className="flex w-[85%] md:w-[50%] flex-col gap-4">
       <div>
         <div className="mb-2 block w-[50%]">

@@ -15,9 +15,6 @@ const MainNavbar = () => {
     <NavLink to="/" className="text-xl mb-[10px] text-[#16466B]  p-[20px] hover:text-black duration-[0.2s] transition-all">
       Home
       </NavLink>
-    <NavLink to="/dashboard" className="text-xl mb-[10px] text-[#16466B] p-[20px] hover:text-black duration-[0.2s] transition-all">
-      Dashbord
-      </NavLink>
     <NavLink to="/contact" className="text-xl mb-[10px] text-[#16466B] p-[20px] hover:text-black duration-[0.2s] transition-all">
       Contact us
       </NavLink>
