@@ -1,8 +1,15 @@
+import { useContext } from "react"
+import Navbar from "./Components/Navbar/Navbar"
+import { AuthContent } from "./Components/Authprovider/AuthProvider"
+
 function App() {
+
+  const {data} = useContext(AuthContent)
+  console.log(data);
 
   return (
     <>
-      <Button className='bg-yellow-400 text-red-500'>MUI Button Test</Button>
+      <Navbar/>
     </>
   )
 }
