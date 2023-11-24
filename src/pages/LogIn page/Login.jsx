@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import { AuthContent } from '../../Components/Authprovider/AuthProvider';
 
 const Login = () => {
+  const {login} = useContext(AuthContent)
     const formFunction = e =>{
         e.preventDefault()
         const email = e.target.email.value
@@ -14,7 +16,14 @@ const Login = () => {
                 icon:"warning"
             })
         }
-        console.log(email, password);
+
+        login(email, password)
+        .then(res=>{
+          return Swal.fire({
+            title:"Logged in successfully",
+            icon:"success"
+          })
+        })
     }
   return (
     <div className='container mx-auto flex flex-col items-center'>

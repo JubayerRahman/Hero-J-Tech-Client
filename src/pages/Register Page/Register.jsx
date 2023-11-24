@@ -1,10 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Button, Checkbox, Label, Select, TextInput } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import ProfileIcon from "../../assets/profileDefault.png"
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { AuthContent } from '../../Components/Authprovider/AuthProvider';
+import { updateProfile } from 'firebase/auth';
+import auth from '../../Components/Firebase/Firebase.confing';
 
 const Register = () => {
+    const {CreateUser} = useContext(AuthContent)
     const [Img, setImage] = useState(ProfileIcon)
+    const ImageURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_API}`
     const uploadRef = useRef(null)
     const fileUploadButton = event =>{
         uploadRef.current.click()
@@ -17,11 +24,82 @@ const Register = () => {
         console.log(image);
       }
 
+      const registrationForm =e =>{
+        e.preventDefault()
+        const form = new FormData()
+        const image = e.target.profilephoto.files[0]
+        const name  = e.target.name.value
+        const email = e.target.email.value
+        const designation = e.target.designation.value
+        const role = e.target.role.value
+        const account = e.target.account.value
+        const salary = e.target.salary.value
+        const password = e.target.password.value
+        let imageURL = ""
+
+        if (image == undefined || name =="" || email =="" || designation =="" || role =="" || account =="" || salary =="" || password=="") {
+          return Swal.fire({
+            title:"please fill all the fields",
+            icon:"warning"
+          })
+        }
+
+        if(password.length<6){
+          return Swal.fire({
+            title:"Your Password is small",
+            icon:"error"
+          })
+        }
+        if(!/[A-Z]/.test(password)){
+          return Swal.fire({
+            title:"Add capital letter in your passwoed",
+            icon:"error"
+          })
+        }
+        const specialCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/
+        if(!specialCharacter.test(password)){
+          return Swal.fire({
+            title:"Add special character in your passwoed",
+            icon:"error"
+          })
+        }
+
+        form.append("image", image )
+        axios.post(ImageURL, form, {
+          headers: {
+            "content-type": "multipart/form-data",
+          }
+        })
+        .then(res=> {
+          if (res?.data?.data?.display_url) {
+            imageURL = res?.data?.data?.display_url
+            CreateUser(email, password)
+            .then(res=>{
+              console.log(res);
+              updateProfile(auth.currentUser,{
+                displayName: `${name}`,
+                photoURL:`${imageURL}`
+              })
+              .then(res=>{
+                
+              })
+              .then(error=> console.log(error.message))
+            })
+            .catch(error=> {
+              return Swal.fire({
+                title: error.message,
+                icon:"error"
+              })
+            })
+          }
+        })
+      }
+
   return (
     <div className=' container mx-auto my-[50px] flex flex-col items-center'>
-      <form className="flex w-[85%] md:w-[60%] flex-col gap-4">
+      <form onSubmit={registrationForm} className="flex w-[85%] md:w-[60%] flex-col gap-4">
         <img 
-        className='w-[150px] border-2 rounded-lg hover:opacity-[0.2]' 
+        className='w-[150px] h-[150px] border-2 rounded-lg hover:opacity-[0.2]' 
         src={Img} 
         draggable='false' onClick={fileUploadButton}
         />
@@ -33,7 +111,7 @@ const Register = () => {
         <div className="mb-2 block">
           <Label htmlFor="name" value="Your Name" />
         </div>
-        <TextInput id="name" type="text" name='email' placeholder="Your name" shadow />
+        <TextInput id="name" type="text" name='name' placeholder="Your name" shadow />
       </div>
       <div>
         <div className="mb-2 block">
@@ -52,7 +130,8 @@ const Register = () => {
       <div className="mb-2 block">
         <Label htmlFor="role" value="Select your Role" />
       </div>
-      <Select id="role" >
+      <Select id="role" name='role' >
+        <option value="">what is your Role?</option>
         <option value="Employee">Employee</option>
         <option value="HR">Human Resources (HR)</option>
       </Select>
