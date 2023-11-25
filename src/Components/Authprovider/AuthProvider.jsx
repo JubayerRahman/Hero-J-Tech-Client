@@ -1,12 +1,16 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import React, { createContext, useEffect, useState } from 'react'
 import auth from '../Firebase/Firebase.confing'
+import useAxios from '../Hook/AxiosUrl/useAxios'
 
 export const AuthContent = createContext(null)
 
 const AuthProvider = ({children}) => {
 
+  const Axious = useAxios()
+
   const [user, setUser] = useState(null)
+  const [userRole, setUserRole] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
@@ -17,6 +21,17 @@ const AuthProvider = ({children}) => {
 
     return unSubscribe
   },[])
+
+  useEffect(()=>{
+    if (user) {
+      const email =user.email
+      Axious(`/employee?email=${email}`)
+      .then(res=>{
+        const data= res.data
+        setUserRole(data[0].role)
+      })
+  }
+  },[user])
 
 
 
@@ -36,8 +51,11 @@ const AuthProvider = ({children}) => {
 
   
 
+  
+
     const Authdate ={
         user,
+        userRole,
         loading,
         CreateUser,
         login,
