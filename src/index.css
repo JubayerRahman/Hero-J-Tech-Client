@@ -6,3 +6,10 @@
 body{
     font-family: 'Ubuntu', sans-serif;
 }
+.banner{
+    background: url(../src/assets/bannerBg.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

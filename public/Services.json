@@ -1,0 +1,31 @@
+[
+    {
+      "id": 1,
+      "service_name": "Website Development",
+      "features": ["Responsive Design", "Customizable UI", "Scalable Architecture"],
+      "details": "Crafting modern and responsive websites tailored to your business needs.",
+      "price": 1500
+    },
+    {
+      "id": 2,
+      "service_name": "Mobile App Development",
+      "features": ["iOS & Android Support", "User-friendly Interface", "Push Notifications"],
+      "details": "Building cutting-edge mobile applications for a seamless user experience.",
+      "price": 2500
+    },
+    {
+      "id": 3,
+      "service_name": "Cloud based Consulting",
+      "features": ["AWS & Azure Expertise", "Scalability Assessment", "Cost Optimization"],
+      "details": "Guiding businesses in adopting and optimizing cloud infrastructure.",
+      "price": 1800
+    },
+    {
+      "id": 4,
+      "service_name": "Databade Analytics",
+      "features": ["Predictive Analysis", "Data Visualization", "Custom Reports"],
+      "details": "Unleashing the power of data to drive informed business decisions.",
+      "price": 2000
+    }
+  ]
+  

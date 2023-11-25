@@ -1,9 +1,18 @@
 import React from 'react'
+import Banner from './Banner'
+import Services from './Services'
+import Reviews from './Reviews'
+import AboutUs from './AboutUs'
+import OurPartners from './OurPartners'
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Banner/>
+      <AboutUs/>
+      <OurPartners/>
+      <Services/>
+      <Reviews/>
     </div>
   )
 }
