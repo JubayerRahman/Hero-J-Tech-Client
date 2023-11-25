@@ -34,7 +34,7 @@ const Reviews = () => {
   return (
     <div className='Container mx-auto my-[50px]'>
       <div className='bg-[#F27364] mx-auto h-[4px] w-[50%] rounded-lg mb-[25px]'></div>
-      <h1 className='text-center text-5xl font-bold mt-[15px] mb-[15px] text-[#225A8D]'>Reviews by our Beloved Clients</h1>
+      <h1 className='text-center text-3xl md:text-5xl font-bold mt-[15px] mb-[15px] text-[#225A8D]'>Reviews by our Beloved Clients</h1>
       <div className='bg-[#F27364] mx-auto h-[4px] w-[50%] rounded-lg mb-[25px]'></div>
 
     <Carousel
