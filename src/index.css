@@ -13,3 +13,14 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+/* .dashboardNav{
+    overflow-x: scroll;
+} */
+.dashboardNav a.active{
+    background-color: white;
+    color: #01203D;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.2s ease-out;
+}

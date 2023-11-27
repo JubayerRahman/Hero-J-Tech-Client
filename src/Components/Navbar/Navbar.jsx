@@ -30,9 +30,7 @@ const MainNavbar = () => {
         <span className="block text-sm">{user.displayName}</span>
         <span className="block truncate text-sm font-medium">{user.email}</span>
       </Dropdown.Header>
-      <Dropdown.Item>Dashboard</Dropdown.Item>
-      <Dropdown.Item>Settings</Dropdown.Item>
-      <Dropdown.Item>Earnings</Dropdown.Item>
+      <NavLink to="/Dashboard"><Dropdown.Item>Dashboard</Dropdown.Item></NavLink>
       <Dropdown.Divider />
       {/* <Dropdown.Item>Sign out</Dropdown.Item> */}
       <Button className="mx-auto mb-[10px]" onClick={logout}>Sign Out</Button>
@@ -46,9 +44,9 @@ const MainNavbar = () => {
 </>
 
   return (
-    <div className="container mx-auto">
-      <Navbar fluid rounded>
-      <Navbar.Brand as={Link}>
+    <div className=" mx-auto ">
+      <Navbar fluid rounded className=" ">
+      <Navbar.Brand as={Link} className="">
         <img src={Logo} className="mr-3 w-[100px]" alt="Flowbite React Logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span>
       </Navbar.Brand>

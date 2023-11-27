@@ -34,8 +34,8 @@ const PaymentHistory = () => {
 
   return (
     <div className='container mx-auto'>
-        <h1 className='my-[20px] text-center text-xl'>Hi, {user?.displayName}. Here is your latest payment history. if you have any query frrl free to contack with the HR.</h1>
-      <div className="overflow-x-auto mx-auto w-[70%]">
+        <h1 className='my-[20px] text-center p-[10px] md:text-xl'>Hi, {user?.displayName}. Here is your latest payment history. if you have any query fell free to contact with the HR.</h1>
+      <div className="overflow-x-auto mx-auto md:w-[70%]">
       <Table>
         <Table.Head>
           <Table.HeadCell>Month</Table.HeadCell>
@@ -54,13 +54,15 @@ const PaymentHistory = () => {
         </Table.Body>
       </Table>
       <div className='flex gap-2 my-[25px]'>
+      </div>
+    </div>
+      <div className='p-[10px] flex items-center'>
       {
         pages.map(page=>
         <button key={page} onClick={()=>setCurrentPage(page)} 
         className={currentPage==page?'border-2 p-[10px] border-black': 'bg-black p-[10px] text-xl text-white'}>{page +1}</button>)
       }
       </div>
-    </div>
     </div>
   )
 }

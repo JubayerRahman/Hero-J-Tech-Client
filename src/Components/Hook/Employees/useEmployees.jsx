@@ -14,14 +14,14 @@ const useEmployees = () => {
         console.log(userRole);
     }
     
-    const {refetch, data:employee=[]} = useQuery({
+    const {refetch, isLoading, data:employee=[]} = useQuery({
         queryKey:["employee"],
         queryFn: async ()=>{
-            const res = await Axious.get("/employee")
+            const res = await Axious.get("/employee?role=Employee")
             return res.data
         }
     })
-  return [employee, refetch]
+  return [employee,isLoading, refetch]
 }
 
 export default useEmployees

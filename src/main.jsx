@@ -19,6 +19,9 @@ import useAxios from './Components/Hook/AxiosUrl/useAxios.js'
 import Progress from './pages/Progress/Progress.jsx'
 import PaymentHistory from './pages/PaymentHistory/PaymentHistory.jsx'
 import WorkSheet from './pages/WorkSheet/WorkSheet.jsx'
+import PrivateRoute from './Components/PrivateRoute/privateRoute.jsx'
+import Dashboard from './pages/Dashboard/Dashboard.jsx'
+import WelcomePage from './pages/WelcomePage/WelcomePage.jsx'
 
 const Axios = useAxios()
 
@@ -45,28 +48,38 @@ const routes = createBrowserRouter([
         path:"/register",
         element:<Register/>
       },
+      {
+        path:"/Dashboard",
+        element:<PrivateRoute><Dashboard/></PrivateRoute>,
+        children:[
+          //routes for Employee
+      {
+        path:"/Dashboard",
+        element:<PrivateRoute><WelcomePage></WelcomePage></PrivateRoute>
+      },
+      {
+        path:"/Dashboard/payment-history",
+        element:<PrivateRoute><PaymentHistory/></PrivateRoute>
+      },
+      {
+        path:"/Dashboard/work-sheet",
+        element:<PrivateRoute><WorkSheet/></PrivateRoute>
+      },
       // Routes For HR
       {
-        path:"/employee-list",
+        path:"/Dashboard/employee-list",
         element:<Employee_list/>
       },
       {
-        path:"/details/:id",
+        path:"/Dashboard/details/:id",
         element:<SingleEmployee/>,
         loader: ({params})=> Axios(`/employee/${params.id}`) 
       },
       {
-        path:"/progress",
+        path:"/Dashboard/progress",
         element:<Progress/>
       },
-      //routes for Employee
-      {
-        path:"/payment-history",
-        element:<PaymentHistory/>
-      },
-      {
-        path:"/work-sheet",
-        element:<WorkSheet/>
+        ]
       },
 
     ]

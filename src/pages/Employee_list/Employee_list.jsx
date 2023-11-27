@@ -114,7 +114,7 @@ const Employee_list = () => {
     
   return (
     <div>
-      <div className="overflow-x-auto container mx-auto">
+      <div className="overflow-x-auto mx-auto w-[90%]">
       <Table>
         <Table.Head>
           <Table.HeadCell></Table.HeadCell>
@@ -130,7 +130,7 @@ const Employee_list = () => {
         <Table.Body className="divide-y">
           {
             employee.map( (employee, index) =>
-                <Table.Row key={employee._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <Table.Row key={employee._id} className="bg-white over dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                         {index +1}
                     </Table.Cell>
@@ -209,7 +209,7 @@ const Employee_list = () => {
         </Modal>
                     </Table.Cell>
                     <Table.Cell>
-                        <Link className='underline' to={`/details/${employee._id}`} >Details</Link>
+                        <Link className='underline' to={`/Dashboard/details/${employee._id}`} >Details</Link>
                     </Table.Cell>
                 </Table.Row>
                 )
