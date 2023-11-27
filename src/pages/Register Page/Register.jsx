@@ -147,11 +147,23 @@ const Register = () => {
       </div>
       <div className='flex flex-col md:flex-row justify-evenly items-center gap-2'>
       <div className='w-full'>
-        <div className="mb-2 block">
-          <Label htmlFor="designation" value="Your designation" />
-        </div>
-        <TextInput id="designation" type="text" name='designation' placeholder="Your designation" shadow />
+      <div className="mb-2 block">
+        <Label htmlFor="designation" value="Your designation" />
       </div>
+      <Select id="designation" name='designation' >
+        <option value="">what's your designation?</option>
+        <option value="Software Engineer"> Software Engineer </option>
+        <option value="Frontend Developer"> Frontend Developer </option>
+        <option value="Backend Developer"> Backend Developer </option>
+        <option value="Data Scientist"> Data Scientist  </option>
+        <option value="DevOps Engineer"> DevOps Engineer </option>
+        <option value="UI/UX Designer"> UI/UX Designer  </option>
+        <option value="Product Manager"> Product Manager  </option>
+        <option value="QA Engineer (Quality Assurance)"> QA Engineer (Quality Assurance)  </option>
+        <option value="Systems Architect"> Systems Architect  </option>
+        <option value="IT Support Specialist"> IT Support Specialist  </option>
+      </Select>
+    </div>
       <div className='w-full'>
       <div className="mb-2 block">
         <Label htmlFor="role" value="Select your Role" />

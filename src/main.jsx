@@ -15,6 +15,12 @@ import Register from './pages/Register Page/Register.jsx'
 import Contact from './pages/Contact/Contact.jsx'
 import Employee_list from './pages/Employee_list/Employee_list.jsx'
 import SingleEmployee from './pages/SingleEmployee/SingleEmployee.jsx'
+import useAxios from './Components/Hook/AxiosUrl/useAxios.js'
+import Progress from './pages/Progress/Progress.jsx'
+
+const Axios = useAxios()
+
+
 
 const routes = createBrowserRouter([
   {
@@ -44,8 +50,13 @@ const routes = createBrowserRouter([
       },
       {
         path:"/details/:id",
-        element:<SingleEmployee/>
-      }
+        element:<SingleEmployee/>,
+        loader: ({params})=> Axios(`/employee/${params.id}`) 
+      },
+      {
+        path:"/progress",
+        element:<Progress/>
+      },
     ]
   }
 ])
