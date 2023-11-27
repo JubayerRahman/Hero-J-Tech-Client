@@ -17,6 +17,8 @@ import Employee_list from './pages/Employee_list/Employee_list.jsx'
 import SingleEmployee from './pages/SingleEmployee/SingleEmployee.jsx'
 import useAxios from './Components/Hook/AxiosUrl/useAxios.js'
 import Progress from './pages/Progress/Progress.jsx'
+import PaymentHistory from './pages/PaymentHistory/PaymentHistory.jsx'
+import WorkSheet from './pages/WorkSheet/WorkSheet.jsx'
 
 const Axios = useAxios()
 
@@ -57,6 +59,16 @@ const routes = createBrowserRouter([
         path:"/progress",
         element:<Progress/>
       },
+      //routes for Employee
+      {
+        path:"/payment-history",
+        element:<PaymentHistory/>
+      },
+      {
+        path:"/work-sheet",
+        element:<WorkSheet/>
+      },
+
     ]
   }
 ])

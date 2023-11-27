@@ -76,7 +76,7 @@ const Employee_list = () => {
           const header ={
             "Content-Type":"application/json"
           }
-          const responce = await fetch('http://localhost:5000/chackout',{
+          const responce = await fetch('https://hero-j-tech-server.vercel.app/chackout',{
             method:"POST",
             headers: header,
             body:JSON.stringify(salary)
