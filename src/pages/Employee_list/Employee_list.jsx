@@ -11,7 +11,7 @@ import useAxios from '../../Components/Hook/AxiosUrl/useAxios';
 import {loadStripe} from '@stripe/stripe-js';
 
 const Employee_list = () => {
-  const [employee, refetch] = useEmployees()
+  const [employee,isLoading, refetch] = useEmployees()
   const Axios = useAxios()
   const [openModal, setOpenModal] = useState(null);
   const [loading, setLoading] = useState(true)
@@ -106,10 +106,10 @@ const Employee_list = () => {
       .then(res => {
         // if (res.) {
           
-        // }
-        console.log(res.data)
-        refetch()
-      })
+          // }
+          console.log(res.data)
+          refetch();
+        })
     }
     
   return (

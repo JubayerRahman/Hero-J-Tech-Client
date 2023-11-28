@@ -22,6 +22,7 @@ import WorkSheet from './pages/WorkSheet/WorkSheet.jsx'
 import PrivateRoute from './Components/PrivateRoute/privateRoute.jsx'
 import Dashboard from './pages/Dashboard/Dashboard.jsx'
 import WelcomePage from './pages/WelcomePage/WelcomePage.jsx'
+import AllEmployees from './pages/All_Employees/AllEmployees.jsx'
 
 const Axios = useAxios()
 
@@ -78,6 +79,10 @@ const routes = createBrowserRouter([
       {
         path:"/Dashboard/progress",
         element:<Progress/>
+      },
+      {
+        path:"/Dashboard/all-employee-list",
+        element:<AllEmployees/>
       },
         ]
       },

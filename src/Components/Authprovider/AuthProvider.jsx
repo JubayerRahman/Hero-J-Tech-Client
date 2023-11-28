@@ -25,6 +25,7 @@ const AuthProvider = ({children}) => {
   useEffect(()=>{
     if (user) {
       const email =user.email
+      console.log(email);
       Axious(`/employee?email=${email}`)
       .then(res=>{
         const data= res.data

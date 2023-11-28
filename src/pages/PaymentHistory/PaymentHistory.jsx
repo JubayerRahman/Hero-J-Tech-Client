@@ -12,7 +12,7 @@ const PaymentHistory = () => {
     const Axios = useAxios()
     useEffect(()=>{
         if (user) {
-            Axios(`http://localhost:5000/salary?email=${user.email}`)
+            Axios(`https://hero-j-tech-server.vercel.app/salary?email=${user.email}`)
             .then(res=>{ setUserSalary(res.data)})
         }
     },[user])
@@ -25,7 +25,7 @@ const PaymentHistory = () => {
     
     useEffect(()=>{
         if (user) {
-            Axios(`http://localhost:5000/salary?email=${user.email}&page=${currentPage}&size=${datalinit}`)
+            Axios(`https://hero-j-tech-server.vercel.app/salary?email=${user.email}&page=${currentPage}&size=${datalinit}`)
             .then(res=>{ setshowData(res.data)})
         }
     },[currentPage, user])

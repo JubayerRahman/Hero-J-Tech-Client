@@ -23,7 +23,7 @@ const WelcomePage = () => {
         <p className='text-center lg:w-[75%] my-[20px] mx-auto'>
         Here our dedicated and hard-working developers made features to keep track of your workflow. All these tools are here to help you with your work. feel free to connect with our developing team for any help or suggestions. Our team of developers is working hard to make the system perfect and updating it with the latest features every day. So, they will be very pleased to hear from you and how it helps you and how can it help you more.
         </p>
-        <div className='flex gap-3'>
+        <div className='flex items-center gap-3'>
             {
               userData?.role === "Employee"?
               <Link to="/Dashboard/payment-history">
@@ -33,6 +33,10 @@ const WelcomePage = () => {
             <Link to="/Dashboard/employee-list">
             <button className='text-xl p-[15px] border-4 rounded-lg bg-[#01203D] border-[#01203D] text-white '>Get Started</button>
             </Link>
+            : userData?.role ==="Admin"?
+            // <Link to="/Dashboard/employee-list">
+            <h1>Lets start </h1>
+            // </Link>
             : <h1>No Link for you.</h1>
             }
             <Link to="/contact">

@@ -23,9 +23,13 @@ const WorkSheet = () => {
   })
 
   useEffect(()=>{
+    if (user) {
+      setEmail(user.email)
+    }
     Axios(`/work?email=${email}`)
     .then(res=> SetWorkCount(res.data))
-  },[user])
+  },[])
+  console.log(email);
   console.log(workCount.length);
 
   const page = Math.ceil(10/limit)
@@ -37,6 +41,7 @@ const WorkSheet = () => {
     const tasks =  e.target.tasks.value
     const hours = e.target.hours.value
     const date =e.target.date.value
+    const month = date.split(" ")[0]
     if (tasks =="" || hours == "" ) {
       return Swal.fire({
         title:"fill all the fields",
@@ -45,8 +50,9 @@ const WorkSheet = () => {
     }
     const name = user.displayName
     const email = user.email
-    const Work = {tasks, hours, date, name, email}
-
+    const Work = {tasks, hours, date, name, email, month}
+    console.log(Work);
+    
     Axios.post("/work", Work)
     .then(res=> {
       if (res.data.insertedId) {
@@ -55,6 +61,10 @@ const WorkSheet = () => {
           icon:"success"
         })
       }
+      if (isLoading) {
+        console.log("loading");
+      }
+      refetch()
     })
     console.log(Work);
   }
