@@ -1,6 +1,5 @@
 # Hero-J-Tech
 # [livelink](https://hero-j-tech.web.app)
-![logo](./dist/assets/logo-qmBzQ1UK.png)
 
 ### Here are the 5 Features of this Web Application(MERN):
 
