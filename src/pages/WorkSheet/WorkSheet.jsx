@@ -21,6 +21,14 @@ const WorkSheet = () => {
       return res.data
     }
   })
+  const { data:AllWokrs=[]} = useQuery({
+    queryKey:["AllWork"],
+    queryFn: async()=>{
+      const res = await Axios.get(`/work?email=${user.email}`)
+      console.log(res.data);
+      return res.data
+    }
+  })
 
   useEffect(()=>{
     if (user) {
@@ -28,11 +36,11 @@ const WorkSheet = () => {
     }
     Axios(`/work?email=${email}`)
     .then(res=> SetWorkCount(res.data))
-  },[])
+  },[user])
   console.log(email);
   console.log(workCount.length);
 
-  const page = Math.ceil(10/limit)
+  const page = Math.ceil(AllWokrs.length/limit)
   const pages =[...Array(page).keys()]
   
 

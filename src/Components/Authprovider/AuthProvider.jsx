@@ -12,27 +12,48 @@ const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null)
   const [userRole, setUserRole] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [isAdmin, setAdmin] = useState(false)
+  const [isHr, setisHr] = useState(false)
+  const [status, setStatus] = useState()
 
   useEffect(()=>{
     const unSubscribe = onAuthStateChanged(auth, currentUser =>{
       setUser(currentUser)
       setLoading(false)
     })
-
+    
     return unSubscribe
   },[])
-
+  
+  
+  
   useEffect(()=>{
-    if (user) {
-      const email =user.email
-      console.log(email);
-      Axious(`/employee?email=${email}`)
+    if (user !== null) {
+      const email = user.email
+      Axious.post(`/jwt`, email,{withCredentials:true})
+      .then(res => console.log(res.data))
+      Axious(`/employee?email=${user.email}`)
       .then(res=>{
         const data= res.data
         setUserRole(data[0].role)
+        setStatus(data[0].status)
       })
-  }
+    }
   },[user])
+ 
+  useEffect(()=>{
+    if (userRole === "Admin") {
+      setAdmin(!isAdmin)
+    }
+    if (userRole === "HR") {
+      console.log("i should be true");
+      setisHr(!isHr)
+    }
+  },[userRole])
+
+  console.log(userRole);
+  console.log(isHr);
+  console.log(isAdmin);
 
 
 
@@ -47,9 +68,12 @@ const AuthProvider = ({children}) => {
   }
 
   const logout = ()=>{
+    const email = user.email
+    Axious.post(`/logout`, {email},{withCredentials:true})
+      .then(res => console.log(res.data))
     return signOut(auth)
   }
-
+console.log(status);
   
 
   
@@ -57,7 +81,10 @@ const AuthProvider = ({children}) => {
     const Authdate ={
         user,
         userRole,
+        isAdmin,
+        isHr,
         loading,
+        status,
         CreateUser,
         login,
         logout

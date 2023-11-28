@@ -23,6 +23,8 @@ import PrivateRoute from './Components/PrivateRoute/privateRoute.jsx'
 import Dashboard from './pages/Dashboard/Dashboard.jsx'
 import WelcomePage from './pages/WelcomePage/WelcomePage.jsx'
 import AllEmployees from './pages/All_Employees/AllEmployees.jsx'
+import HrPrivateRoute from './Components/PrivateRoute/HrPrivateRoute.jsx'
+import AdminPrivateRoute from './Components/PrivateRoute/AdminPrivateRoute.jsx'
 
 const Axios = useAxios()
 
@@ -69,20 +71,21 @@ const routes = createBrowserRouter([
       // Routes For HR
       {
         path:"/Dashboard/employee-list",
-        element:<Employee_list/>
+        element:<HrPrivateRoute><Employee_list/></HrPrivateRoute>
       },
       {
         path:"/Dashboard/details/:id",
-        element:<SingleEmployee/>,
+        element:<HrPrivateRoute><SingleEmployee/></HrPrivateRoute> ,
         loader: ({params})=> Axios(`/employee/${params.id}`) 
       },
       {
         path:"/Dashboard/progress",
-        element:<Progress/>
+        element:<HrPrivateRoute><Progress/></HrPrivateRoute>
       },
+      // admin Route
       {
         path:"/Dashboard/all-employee-list",
-        element:<AllEmployees/>
+        element:<AdminPrivateRoute><AllEmployees/></AdminPrivateRoute>
       },
         ]
       },

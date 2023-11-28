@@ -111,6 +111,17 @@ const Employee_list = () => {
           refetch();
         })
     }
+    const unVerify = id =>{
+      const varification = false
+      Axios.put(`employee/${id}`, {varification})
+      .then(res => {
+        // if (res.) {
+          
+          // }
+          console.log(res.data)
+          refetch();
+        })
+    }
     
   return (
     <div>
@@ -144,7 +155,7 @@ const Employee_list = () => {
                     <Table.Cell>{employee.account}</Table.Cell>
                     <Table.Cell className='flex items-center gap-2'><FaBangladeshiTakaSign/> {employee.salary}</Table.Cell>
                     <Table.Cell>
-                    {employee.varification?<TiTickOutline className='text-green-600 text-2xl mx-auto' />:
+                    {employee.varification?<TiTickOutline onClick={()=>unVerify(employee._id)} className='text-green-600 text-2xl mx-auto' />:
                     <ImCross onClick={()=> verifyFunction(employee._id)} className='text-red-600 text-xl mx-auto cursor-pointer' />}
                     </Table.Cell>
                     {/* Will work Here Tomorrow */}

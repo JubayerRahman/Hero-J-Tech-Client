@@ -92,7 +92,8 @@ const Register = () => {
                 else{
                   varification = false
                 }
-                const employeeData = {imageURL, name, email, designation, role, account, salary, varification}
+                const status = "working"
+                const employeeData = {imageURL, name, email, designation, role, account, salary, varification, status}
                 axousLink.post('/employee', employeeData)
                 .then(res => 
                   {
