@@ -30,8 +30,8 @@ const AuthProvider = ({children}) => {
   useEffect(()=>{
     if (user !== null) {
       const email = user.email
-      Axious.post(`/jwt`, email,{withCredentials:true})
-      .then(res => console.log(res.data))
+      Axious.post("/jwt", email)
+      .then(res=> console.log(res.data))
       Axious(`/employee?email=${user.email}`)
       .then(res=>{
         const data= res.data
@@ -68,9 +68,9 @@ const AuthProvider = ({children}) => {
   }
 
   const logout = ()=>{
-    const email = user.email
-    Axious.post(`/logout`, {email},{withCredentials:true})
-      .then(res => console.log(res.data))
+    const userEmail = {email: user.email}
+        Axious.post("/logout", {userEmail} ,{withCredentials: true})
+        .then(res=> console.log(res.data))
     return signOut(auth)
   }
 console.log(status);
