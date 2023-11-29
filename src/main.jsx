@@ -25,6 +25,7 @@ import WelcomePage from './pages/WelcomePage/WelcomePage.jsx'
 import AllEmployees from './pages/All_Employees/AllEmployees.jsx'
 import HrPrivateRoute from './Components/PrivateRoute/HrPrivateRoute.jsx'
 import AdminPrivateRoute from './Components/PrivateRoute/AdminPrivateRoute.jsx'
+import Errorpage from './pages/Errorpage/Errorpage.jsx'
 
 const Axios = useAxios()
 
@@ -34,6 +35,7 @@ const routes = createBrowserRouter([
   {
     path:"/",
     element:<App/>,
+    errorElement: <Errorpage/>,
     children:[
       {
         path:"/",
