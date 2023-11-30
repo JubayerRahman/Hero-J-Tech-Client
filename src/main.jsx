@@ -36,7 +36,7 @@ const routes = createBrowserRouter([
   {
     path:"/",
     element:<App/>,
-    // errorElement: <Errorpage/>,
+    errorElement: <Errorpage/>,
     children:[
       {
         path:"/",
