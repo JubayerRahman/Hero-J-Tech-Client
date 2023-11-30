@@ -10,13 +10,13 @@ const AdminPrivateRoute = ({children}) => {
           <h1 className='text-5xl font-bold'>Loading</h1>
           </div>
     }
-    if (!isAdmin) {
+    if ( user == null && !isAdmin) {
       return <Navigate to="/"/>
   }
   if (user == null) {
     return <Navigate state={location.pathname} to="/login"/>
 }
-  return (children)
+  return children
 }
 
 export default AdminPrivateRoute

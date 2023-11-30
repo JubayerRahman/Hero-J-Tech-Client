@@ -20,6 +20,12 @@ const AllEmployees = () => {
         const role = "HR"
         Axios.put(`/employee/${id}`, {role})
         .then(res=>{
+          if (res.data.modifiedCount) {
+            Swal.fire({
+              title:"Employee Promoted to HR successfully",
+              icon:"success"
+            })
+          }
             console.log(res.data);
             refetch()
         })

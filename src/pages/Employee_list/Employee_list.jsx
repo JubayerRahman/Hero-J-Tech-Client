@@ -89,11 +89,11 @@ const Employee_list = () => {
           })
     
           if (result.error) {
-            console.log(result.error)
+            // console.log(result.error)
           }
           else{
             Axios.post("/salary", salary)
-            .then(res=>console.log(res.data))
+            // .then(res=>console.log(res.data))
           }
         
       
@@ -104,10 +104,13 @@ const Employee_list = () => {
       const varification = true
       Axios.put(`employee/${id}`, {varification})
       .then(res => {
-        // if (res.) {
-          
-          // }
-          console.log(res.data)
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title:"Employee Verification modified successfully",
+            icon:"success"
+          })
+          }
+          // console.log(res.data)
           refetch();
         })
     }
@@ -115,9 +118,12 @@ const Employee_list = () => {
       const varification = false
       Axios.put(`employee/${id}`, {varification})
       .then(res => {
-        // if (res.) {
-          
-          // }
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title:"Employee Verification modified successfully",
+            icon:"success"
+          })
+        }
           console.log(res.data)
           refetch();
         })
