@@ -24,6 +24,23 @@ const AboutUs = () => {
       </p>
       </div>
       </div>
+      <div className=' md:flex justify-evenly items-start flex-col md:flex-row gap-5  my-[25px]'>
+      <div className='md:w-[50%] flex flex-col items-end p-[10px] text-right mt-[100px]'>
+      <h1 className=' text-5xl font-bold mt-[15px] mb-[15px] text-[#225A8D]'>Our Goals</h1>
+      <div className='bg-[#F27364] h-[4px] w-[40%] rounded-lg'></div>
+      <p className='text-xl my-[25px] mx-auto'>
+      Hero-J-Tech, inspired by Jobayer Rahman's visionary journey from a polytechnic student to a tech entrepreneur, embodies innovation and determination. Founded with a mission to contribute meaningfully to the digital landscape, Hero-J-Tech strives for leadership in innovation, empowerment of individuals, and advocacy for entrepreneurship. With a commitment to excellence and continuous growth, Hero-J-Tech stands as a beacon of transformation in the dynamic world of technology.
+      </p>
+      </div>
+      <div className="h-[500px] md:h-[100vh] flex-1">
+      <Carousel> 
+        <img src="https://i.ibb.co/6y7FkX8/AI-and-Machine-Learning-Symposium.jpg" alt="..." />
+        <img src="https://i.ibb.co/nwtCrND/Dev-Ops-Conference.jpg" alt="..." />
+        <img src="https://i.ibb.co/J3ysQX8/tech-Summit.jpg" alt="..." />
+      </Carousel>
+    </div>
+      
+      </div>
 
     </div>
   )

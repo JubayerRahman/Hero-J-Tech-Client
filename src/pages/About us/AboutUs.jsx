@@ -26,7 +26,7 @@ const AboutUs = () => {
   return (
     <div className=''>
         <div className='welcomeDection container mx-auto md:h-[500px] flex flex-col flex-wrap justify-center items-center'>
-            <h1 className='text-[40px] text-center md:text-[100px]'>Welcome to <spna className="bg-[#01203D] text-white">Heor-J-Tech</spna></h1>
+            <h1 className='text-[40px] text-center md:text-[100px]'>Welcome to <spna className="bg-[#01203D] text-white">Hero-J-Tech</spna></h1>
         </div>
         <div className='flex flex-col md:flex-row'>
         <div className='bg-[#225A8D] p-[20px] text-white'>
